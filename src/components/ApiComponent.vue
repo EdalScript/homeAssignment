@@ -1,7 +1,13 @@
 <template>
   <h1>Data from API</h1>
   <button class="btn">Waiting</button>
-  <p>{{ statuses }}</p>
+  <div>
+     <ul v-if="statuses && statuses.length">
+      <li v-for="[status_id, status_name] in statuses" :key="status_id">
+        {{ status_id }} is {{ status_name}}
+      </li>
+    </ul>
+  </div>
 </template>
 
 <script>
@@ -34,6 +40,10 @@ export default {
       console.log(e);
     }
   },
+  //Hi Joosep! Thanks for the tip, it did help a lot! 
+  //I'm having a lot of fun working in this homework and funnily enough it's just a homework-- yet quite challenging.
+  //I spent too much time understanding the API, how embarrassing! But I learned a lot thanks to this experience. 
+  //I'm quite stubborn myself to let this homework unfinished so I will continue working on this even if it's late
 };
 </script>
 
