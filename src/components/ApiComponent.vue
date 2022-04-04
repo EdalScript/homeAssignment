@@ -1,33 +1,17 @@
 <template>
   <h1>Data from API</h1>
   <button class="btn">Waiting</button>
-  <p>{{ data }}</p>
-  <div>
-    <ul v-if="messages && messages.length">
-      <li v-for="message of messages" :key="message.id">
-        {{ message.body }}
-      </li>
-    </ul>
-    <ul v-if="errors && errors.length">
-      <li v-for="error of errors" :key="error.id">
-        {{ error.message }}
-      </li>
-    </ul>
-  </div>
+  <p>{{ statuses }}</p>
 </template>
 
 <script>
-const API_URL = "https://homeassignment.FOO.com/";
+import axios from "axios";
+const company_account_id = "FOO";
+const apiKey = "BAR";
 const config = {
   method: "POST",
-  headers: {
-    "Content-Type": "text/plain",
-    "Access-Control-Allow-Origin": "*",
-  },
   body: {
     "lang": "eng",
-    "company_account_id": "FOO",
-    "apiKey": "BAR",
   },
 };
 
@@ -36,19 +20,18 @@ export default {
   data() {
     return {
       data: null,
-      messages: [],
-      errors: [],
+      statuses: [],
     };
   },
   async created() {
     try {
-      const response = await fetch(API_URL, config).then(
-        (response) => (this.messages = response)
-      );
-      console.log(response);
+      const response = await axios
+        .post("/api/v2/statuses/list", {company_account_id, apiKey, config})
+        .then((response) => (this.statuses = response.data));
+      console.log(response.data);
     } catch (e) {
       this.errors.push(e);
-      console.log(e, "Hey, I am inside the errors");
+      console.log(e);
     }
   },
 };
@@ -67,17 +50,17 @@ li {
   margin: 0 10px;
 }
 a {
-  color: rgb(0, 179, 179);
+  color: #47c1bf;
 }
 .btn {
-  border: 2px solid rgb(0, 179, 179);
+  border: 2px solid #47c1bf;
   background-color: #fff;
   width: 80px;
   font-size: 1em;
   border-radius: 5px;
 }
 .btn:hover {
-  background: rgb(0, 179, 179);
+  background: #47c1bf;
   color: #fff;
 }
 </style>
