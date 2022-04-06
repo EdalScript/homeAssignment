@@ -3,12 +3,11 @@
 
   <main>
     <div class="list-container">
-      <button class="btn">Waiting</button>
-      <div class="dropdown">
+      <button @click="toggle" class="btn">Waiting</button>
+      <div v-if="active" class="dropdown">
         <ul>
           <li v-for="(status, index) in statuses.data" :key="index">
             <span
-
               class="status-color"
               :style="{ 'background-color': status.color }"
             ></span>
@@ -36,7 +35,13 @@ export default {
   data() {
     return {
       statuses: [],
+      active: false,
     };
+  },
+  methods: {
+    toggle() {
+      this.active = !this.active;
+    },
   },
   async created() {
     try {
@@ -53,6 +58,7 @@ export default {
 </script>
 
 <style scoped>
+
 main {
   display: flex;
   align-items: center;
@@ -65,9 +71,8 @@ ul {
   list-style-type: none;
   padding: 0;
   position: relative;
-  padding: 0;
-  box-shadow: 0px 0px 30px 15px rgba(97, 93, 93, 0.055);
-  width: 250px;
+  top: -9px;
+  box-shadow: 0px 0px 15px 5px rgba(97, 93, 93, 0.075);
   cursor: pointer;
   display: flex;
   flex-direction: column;
@@ -75,10 +80,11 @@ ul {
 }
 li {
   display: inline-block;
-  padding: 0.7em;
+  padding: 0.9em;
   list-style: none;
-  vertical-align: middle;
-  width: 90%;
+  text-align: left;
+  max-width: 160px;
+  margin-left: 3px;
 }
 
 li:hover {
@@ -92,20 +98,27 @@ li:active {
 a {
   color: #47c1bf;
 }
+/* Style for button and status color*/
+.list-container {
+  font-size: 0.75em;
+  font-weight: 400;
+  border-radius: 4px;
+}
 .btn {
   border: 2px solid #47c1bf;
   background-color: #fff;
   width: 80px;
   font-size: 1em;
   border-radius: 5px;
+  cursor: pointer;
 }
 .btn:hover {
   background: #47c1bf;
   color: #fff;
 }
 .status-color {
-  height: 15px;
-  width: 15px;
+  height: 12px;
+  width: 12px;
   border-radius: 50%;
   display: inline-block;
   border: 4px solid white;
