@@ -22,7 +22,7 @@
 <script>
 import axios from "axios";
 const company_account_id = "apiplayground";
-const apiKey = "ScoroAPI_ee8e5c35acefcbe";
+const apiKey = "FOO";
 const config = {
   method: "POST",
   body: {
