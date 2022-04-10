@@ -1,10 +1,10 @@
 <template>
-  <h1>Data from API</h1>
+  <h1>Scoro</h1>
 
   <main>
     <div class="list-container">
       <button @click="toggle" class="btn">Waiting</button>
-      <div v-if="active" class="dropdown">
+      <div v-if="active" @mouseleave="handleEvent" class="dropdown">
         <ul>
           <li v-for="(status, index) in statuses.data" :key="index">
             <span
@@ -21,8 +21,8 @@
 
 <script>
 import axios from "axios";
-const company_account_id = "FOO";
-const apiKey = "BAR";
+const company_account_id = "apiplayground";
+const apiKey = "ScoroAPI_ee8e5c35acefcbe";
 const config = {
   method: "POST",
   body: {
@@ -42,6 +42,9 @@ export default {
     toggle() {
       this.active = !this.active;
     },
+    handleEvent() {
+      this.active = !this.active;
+    },
   },
   async created() {
     try {
@@ -50,7 +53,6 @@ export default {
         .then((response) => (this.statuses = response.data));
       console.log(response.data);
     } catch (e) {
-      this.errors.push(e);
       console.log(e);
     }
   },
@@ -58,7 +60,6 @@ export default {
 </script>
 
 <style scoped>
-
 main {
   display: flex;
   align-items: center;
@@ -103,6 +104,21 @@ a {
   font-size: 0.75em;
   font-weight: 400;
   border-radius: 4px;
+}
+.dropdown {
+  overflow-y: scroll;
+  max-height: 250px;
+}
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #47c1bf;
+  border-radius: 10px;
 }
 .btn {
   border: 2px solid #47c1bf;

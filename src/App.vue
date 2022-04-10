@@ -5,11 +5,15 @@
 
 <script>
 import ApiComponent from './components/ApiComponent.vue'
+//import Dropdown from './components/Dropdown.vue'
+//import DropdownContent from './components/Dropdown.vue'
 
 export default {
   name: 'App',
   components: {
-    ApiComponent
+    ApiComponent,
+ //   Dropdown,
+ //   DropdownContent
   }
 }
 </script>
