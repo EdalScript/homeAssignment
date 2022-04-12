@@ -1,5 +1,5 @@
 <template>
-  <h1>Scoro</h1>
+  <h1>Status Picker</h1>
 
   <main>
     <div class="list-container">
@@ -108,6 +108,7 @@ a {
 .dropdown {
   overflow-y: scroll;
   max-height: 250px;
+  box-shadow: 0px 0px 15px 5px rgba(97, 93, 93, 12%);
 }
 ::-webkit-scrollbar {
   width: 7px;
@@ -127,8 +128,10 @@ a {
   font-size: 1em;
   border-radius: 5px;
   cursor: pointer;
+  transform: translateX(-48px);
 }
-.btn:hover {
+.btn:hover, 
+.btn:focus {
   background: #47c1bf;
   color: #fff;
 }
